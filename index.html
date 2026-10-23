@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>运放应用电路 · 交互实验室</title>
+<style>
+:root{--bg:#f3f5f8;--card:#fff;--ink:#182638;--sub:#5d6c7c;--line:#dae2eb;--blue:#2563d5;--red:#d44836;--green:#167b65;--navy:#12263b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:"Microsoft YaHei","PingFang SC",system-ui,sans-serif;font-size:15px;line-height:1.65}button,input,select{font:inherit}button,select,input[type=range],input[type=checkbox]{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #52a2ef;outline-offset:3px}button{border:1px solid var(--line);background:white;color:var(--ink);border-radius:8px;padding:8px 13px}button:hover{border-color:var(--blue);color:var(--blue)}.wrap{max-width:1440px;margin:auto;padding:24px 32px 40px}header{background:var(--navy);color:white}.hero{display:flex;justify-content:space-between;gap:24px;align-items:center;padding-top:28px;padding-bottom:28px}.eyebrow{font-size:12px;letter-spacing:2px;color:#9ed4ee}.hero h1{font-size:30px;line-height:1.3;margin:8px 0}.hero p{margin:8px 0 0;color:#c2cfdb;font-size:14px}.tag{border:1px solid #547086;padding:7px 12px;border-radius:6px;color:#d1e5ef;white-space:nowrap;font-size:13px}.lessonbar{display:flex;justify-content:space-between;gap:12px;align-items:center;margin-bottom:16px}.lessonbar p{color:var(--sub);margin:0;font-size:13px}.tabs{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;margin-bottom:22px}.tabs button{padding:12px 5px;border-radius:9px;text-align:left;padding-left:14px}.tabs button span{display:block;overflow-wrap:anywhere;color:var(--sub);font-size:11px;letter-spacing:1px}.tabs button[aria-selected=true]{background:var(--navy);color:#fff;border-color:var(--navy)}.tabs button[aria-selected=true] span{color:#a9ccdf}.layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(300px,1fr);gap:20px;align-items:start}.card{min-width:0;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}.cardhead{padding:17px 22px 12px;display:flex;gap:12px;align-items:center;justify-content:space-between}.cardhead h2{margin:0;font-size:18px}.small{font-size:12px;color:var(--sub)}.pill{font-size:12px;border-radius:5px;padding:3px 8px;color:var(--green);background:#e9f5f0}.pill.warn{color:#a3471e;background:#fff0e5}.schematic{padding:0 8px}.schematic svg{display:block;width:100%;height:auto}.wire{fill:none;stroke:#3b526a;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}.component{fill:white;stroke:#3b526a;stroke-width:2}.node{fill:#3b526a}.svg-label{fill:#263d55;font-size:15px}.svg-sub{fill:#61758a;font-size:12px}.svg-value{fill:var(--blue);font-size:13px}.op{fill:#eff6fc;stroke:#3b526a;stroke-width:2}.symbol{font-size:19px;fill:#263d55}.caption{padding:0 22px 18px;color:var(--sub);font-size:13px}.controls{padding:0 22px 20px}.control{margin:13px 0}.control label{display:flex;justify-content:space-between;gap:10px;align-items:center;margin-bottom:5px;font-size:13px}.value{font-variant-numeric:tabular-nums;color:var(--blue);white-space:nowrap}input[type=range]{width:100%;accent-color:var(--blue);margin:6px 0;min-height:20px}select{width:100%;border:1px solid var(--line);border-radius:7px;background:white;padding:8px;color:var(--ink)}.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px}.check{display:flex;gap:8px;align-items:flex-start;font-size:13px;color:var(--sub);margin:12px 0}.check input{margin-top:5px}.formula{font-family:Cambria,"Times New Roman","Microsoft YaHei",serif;font-size:20px;background:#edf3fa;padding:14px 22px;overflow-wrap:anywhere}.formula small{display:block;font-size:13px;color:var(--sub);margin-top:5px}.resultstrip{display:grid;grid-template-columns:1fr 1fr 1fr;padding:14px 22px;gap:12px;border-top:1px solid var(--line)}.resultstrip div{min-width:0}.resultstrip span{font-size:11px;color:var(--sub);display:block}.resultstrip strong{display:block;font-size:17px;font-weight:600;font-variant-numeric:tabular-nums}.scope{margin-top:20px}.scope svg{width:100%;height:auto;display:block;touch-action:pan-y}.legend{display:flex;flex-wrap:wrap;gap:16px;padding:0 22px 10px;font-size:12px;color:var(--sub)}.legend i{display:inline-block;width:22px;height:3px;vertical-align:middle;margin-right:6px}.chart-in{stroke:var(--blue);fill:none;stroke-width:2}.chart-out{stroke:var(--red);fill:none;stroke-width:2.3}.chart-second{stroke:var(--green);fill:none;stroke-width:1.5;stroke-dasharray:6 4}.chart-grid{stroke:#e1e7ef;stroke-width:1;fill:none}.chart-zero{stroke:#a5b4c3;stroke-width:1}.chart-text{font-size:12px;fill:#66788c}.readout{padding:5px 22px 15px;font-size:12px;color:var(--sub);font-variant-numeric:tabular-nums;min-height:36px}.lesson{margin-top:20px}.lessonbody{padding:0 22px 20px}.lessonbody h3{font-size:14px;margin:14px 0 5px}.lessonbody p{font-size:13px;margin:4px 0;color:#475b70}.steps{padding-left:20px;font-size:13px;color:#475b70}.steps li{margin:7px 0}.callout{background:#fff5e8;border-left:3px solid #d98936;padding:10px 13px;font-size:13px;line-height:1.7;margin-top:14px}.status{font-size:13px;color:var(--sub);padding:0 22px 16px;min-height:40px}.quiz{margin-top:20px}.quizbody{padding:0 22px 20px}.quizbody p{font-size:14px;margin:0 0 12px}.answers{display:grid;gap:8px}.answers button{text-align:left;font-size:13px}.feedback{font-size:13px;margin-top:12px;min-height:22px}.feedback.correct{color:var(--green)}.feedback.wrong{color:#b54c21}.overview{margin-top:24px}.overview summary{padding:17px 22px;cursor:pointer;font-size:15px;font-weight:600}.tablewrap{overflow-x:auto;padding:0 22px 16px}table{width:100%;border-collapse:collapse;font-size:13px;min-width:680px}th,td{text-align:left;border-bottom:1px solid var(--line);padding:11px 12px}th{color:var(--sub);font-weight:500}.footer{font-size:12px;color:var(--sub);margin:20px 0}.footer details{margin-top:10px}.footer summary{cursor:pointer}.footer p{margin:7px 0}.sr-only{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}.hidden{display:none!important}@media(max-width:1050px){.tabs{grid-template-columns:repeat(4,minmax(0,1fr))}.layout{grid-template-columns:minmax(0,1.3fr) minmax(280px,1fr)}.wrap{padding-left:20px;padding-right:20px}}@media(max-width:760px){.layout{grid-template-columns:minmax(0,1fr)}.hero{align-items:flex-start}.tag{display:none}.tabs button span{display:none}#reset{white-space:nowrap;flex-shrink:0}.schematic:after{content: "← 左右滑动查看完整电路 →";display:block;text-align:center;color:var(--sub);font-size:12px;padding-bottom:10px}.hero h1{font-size:25px}.wrap{padding:18px 14px}.lessonbar{align-items:flex-start}.lessonbar p{max-width:70%}.tabs{gap:6px}.tabs button{font-size:13px;padding-left:9px}.cardhead{padding-left:16px;padding-right:16px}.controls,.lessonbody,.quizbody{padding-left:16px;padding-right:16px}.right{display:contents}.main{display:contents}.circuit{order:1}.params{order:2}.scope{order:3;margin-top:0}.lesson{order:4;margin-top:0}.quiz{order:5;margin-top:0}.resultstrip{padding:12px 16px}.formula{padding:12px 16px;font-size:18px}.caption{padding-left:16px;padding-right:16px}.schematic{overflow-x:auto}.schematic svg{min-width:540px}.scope svg{min-width:0}.resultstrip strong{font-size:15px}.footer{font-size:12px}button{min-height:42px}}@media(prefers-reduced-motion:no-preference){.tabs button{transition:background .15s,color .15s}}
+</style>
+</head>
+<body>
+<header><div class="wrap hero"><div><div class="eyebrow">AI 教学案例 09 / ANALOG LAB</div><h1>运放应用电路 · 交互实验室</h1><p>从“虚短、虚断”出发，用同一组输入信号，看懂八类电路如何处理信号。</p></div><div class="tag">看电路 → 作预测 → 调参数 → 验证</div></div></header>
+<main class="wrap">
+<div class="lessonbar"><p>建议顺序：比例放大 → 信号运算 → 波形变换 → 电压比较</p><button id="reset" type="button">重置本电路</button></div>
+<nav class="tabs" role="tablist" aria-label="选择运放应用电路" id="tabs"></nav>
+<section id="workspace" role="tabpanel" aria-labelledby="tab-inv" class="layout">
+<div class="main">
+<section class="card circuit" aria-label="电路原理图"><div class="cardhead"><h2 id="circuitTitle"></h2><span class="pill" id="modeLabel">负反馈 · 线性应用</span></div><div class="schematic" id="schematic"></div><div class="caption" id="circuitCaption"></div><div class="formula" id="formula"></div><div class="resultstrip" id="metrics" aria-live="polite"></div></section>
+<section class="card scope" aria-label="输入输出波形"><div class="cardhead"><h2>观察输入与输出</h2><span class="small">横轴：时间 / ms　纵轴：电压 / V</span></div><div class="legend"><span><i style="background:var(--blue)"></i>输入 u₁</span><span><i style="background:var(--red)"></i>输出 uₒ</span><span id="legend2"><i style="background:var(--green)"></i><span id="legend2text">输入 u₂</span></span></div><svg id="scope" viewBox="0 0 760 310" role="img" aria-label="输入输出时域波形，可移动指针读取数值"><title>输入输出电压随时间变化</title></svg><div class="readout" id="readout">在曲线上移动指针或轻点，读取同一时刻的输入与输出。</div><div id="status" class="status" aria-live="polite"></div></section>
+</div>
+<div class="right">
+<section class="card params"><div class="cardhead"><h2>实验台</h2><span class="small">改变参数，立即观察</span></div><div class="controls" id="controls"></div></section>
+<section class="card lesson"><div class="cardhead"><h2>这一步，为什么？</h2><span class="small" id="lessonIndex"></span></div><div class="lessonbody" id="lesson"></div></section>
+<section class="card quiz"><div class="cardhead"><h2>先预测，再验证</h2><span class="small">概念自测</span></div><div class="quizbody"><p id="question"></p><div class="answers" id="answers"></div><div id="feedback" class="feedback" aria-live="polite"></div></div></section>
+</div>
+</section>
+<details class="card overview"><summary>八类电路速查表</summary><div class="tablewrap"><table><thead><tr><th>电路</th><th>线性区关系 / 判据</th><th>主要作用</th><th>观察重点</th></tr></thead><tbody>
+<tr><td>反相放大器</td><td>uₒ = −(Rƒ/Rᵢ)u₁</td><td>比例放大、反相</td><td>电阻比决定增益</td></tr>
+<tr><td>同相放大器</td><td>uₒ = (1 + Rƒ/Rg)u₁</td><td>同相放大</td><td>闭环增益不小于 1</td></tr>
+<tr><td>电压跟随器</td><td>uₒ = u₁</td><td>缓冲、阻抗变换</td><td>电压不放大，仍有作用</td></tr>
+<tr><td>反相求和器</td><td>uₒ = −Rƒ(u₁/R₁ + u₂/R₂)</td><td>加权求和、叠加偏置</td><td>每路权重独立设定</td></tr>
+<tr><td>差分放大器</td><td>uₒ = k(u₂ − u₁)，两侧电阻比匹配</td><td>信号相减、抑制共模</td><td>匹配条件决定纯差分关系</td></tr>
+<tr><td>积分器</td><td>理想：uₒ = uₒ(0) − ∫u₁dt/(RᵢC)</td><td>积分、方波转三角波</td><td>初值与直流漂移；实用型加入泄放电阻</td></tr>
+<tr><td>实用微分器</td><td>H(s) = −RƒCs/(1 + RᵢCs)</td><td>变化率检测、边沿响应</td><td>低于拐点时近似微分</td></tr>
+<tr><td>单限比较器</td><td>u₁ &gt; Uref：+Ulim；u₁ &lt; Uref：−Ulim</td><td>阈值检测、正弦转方波</td><td>开环工作，不能套用虚短</td></tr>
+</tbody></table></div></details>
+<div class="footer"><strong>模型范围：</strong>教学用理想运放模型，加入对称输出限幅。Ulim 是模型的输出摆幅上限，并非供电电压；限幅为行为近似，不模拟饱和后的真实内部状态与恢复过程。本例未模拟增益带宽、压摆率、输入共模范围、失调与负载效应。真实电路需按所选芯片的数据手册验证。比较器采用无延迟的理想判据；工程上应评估专用比较器。
+<details><summary>课程资料与使用说明</summary><p>内容衔接：参考资料中的《实验1.1 集成运算放大器的运算应用》《2.2 电压比较器电路设计》，采用已有 AI 案例的电路图、参数调节与波形观察形式。积分、实用微分的数学模型在各自页面中明确列出。本例“比较器”仅演示单限比较，不含滞回。</p><p>操作：先选择电路，再调节输入、元件与输出限幅；波形均由当前参数即时计算。输入幅度均为峰值，双输入电路的 u₂ 可选为直流或同频信号。页面无需联网；“概念自测”使用预设解析，不调用在线 AI。</p></details></div>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);
+const circuits=[
+ {id:'inv',name:'反相放大',title:'反相比例放大器',en:'INVERTING',intro:'信号从反相端进入；反馈电阻把输出接回反相端。同相端接地。',steps:['负反馈且未饱和时，u₋ ≈ u₊ = 0，反相节点是“虚地”。','输入端电流近似为零，流过 Rᵢ 的电流只能流向 Rƒ。','列节点电流方程：u₁/Rᵢ = −uₒ/Rƒ，得到反相比例关系。'],focus:'把 Rƒ 加倍，输出幅度会怎样变化？再把输入增大，观察输出何时削顶。',warning:'虚地不是接地。反相节点电压近似为零，但输入电流通过反馈支路流走。',q:['Rᵢ = 10 kΩ、Rƒ = 20 kΩ，输入为 +0.5 V，且输出未饱和。输出是多少？',['−1.0 V','+1.0 V','−0.25 V'],0,'增益为 −Rƒ/Rᵢ = −2，因此输出为 −1.0 V。']},
+ {id:'non',name:'同相放大',title:'同相比例放大器',en:'NON-INVERTING',intro:'输入接同相端；输出经 Rƒ、Rg 分压反馈到反相端。',steps:['在线性负反馈条件下，u₋ ≈ u₊ = u₁。','反相端电压由输出分压得到：u₋ = uₒRg/(Rg + Rƒ)。','令两式相等，得到增益 1 + Rƒ/Rg，输出与输入同相。'],focus:'将 Rƒ/Rg 从 1 调到 4，比较增益；与反相电路使用相同电阻比时，增益相同吗？',warning:'这里的闭环增益不小于 1。公式成立还要求输出未饱和、输入处于芯片允许范围内。',q:['Rƒ = Rg 时，同相放大器的闭环电压增益为多少？',['1','2','−1'],1,'增益为 1 + Rƒ/Rg = 2。']},
+ {id:'buffer',name:'电压跟随',title:'电压跟随器',en:'VOLTAGE FOLLOWER',intro:'输出直接反馈到反相端，输入接同相端，是增益为 1 的负反馈电路。',steps:['输出直接连接到反相端，所以 u₋ = uₒ。','线性负反馈使 u₋ ≈ u₊ = u₁。','因此 uₒ ≈ u₁；理想输入阻抗无限大，输出阻抗为零。'],focus:'提高输入幅度直到超过 Ulim。即使目标增益是 1，输出也不能超过模型的摆幅上限。',warning:'跟随器的价值在于缓冲。本例没有信号源内阻和负载模型，因此波形只展示电压跟随与限幅。',q:['电压跟随器不放大电压，主要用途是什么？',['使输出电压无限增大','缓冲并减轻前级负载','把所有输入变为方波'],1,'理想跟随器输入阻抗高、输出阻抗低，可用于级间缓冲。']},
+ {id:'sum',name:'反相求和',title:'双输入反相求和器',en:'SUMMING',intro:'两路信号各自经过输入电阻，在反相端汇合；同相端接地。',steps:['在线性负反馈条件下，反相汇合节点近似为 0 V。','两路输入电流分别为 u₁/R₁ 和 u₂/R₂，相加后流过反馈电阻。','输出等于两路输入的加权和，再乘以负号；权重分别是 Rƒ/R₁、Rƒ/R₂。'],focus:'默认 u₂ 是 0.7 V 直流。观察正弦信号如何被反相放大并产生直流偏移。',warning:'“求和”不代表必然是 u₁ + u₂。反相求和器存在负号，且每路输入都有自己的电阻权重。',q:['R₁ = R₂ = 10 kΩ、Rƒ = 20 kΩ。要得到资料中的运算，哪一项正确？',['uₒ = 2(u₁ + u₂)','uₒ = −2(u₁ + u₂)','uₒ = −(u₁ − u₂)'],1,'两路增益均为 −2，故 uₒ = −2(u₁ + u₂)。']},
+ {id:'diff',name:'差分放大',title:'电阻比匹配的差分放大器',en:'DIFFERENCE',intro:'u₁ 经过 R₁ 接反相端；u₂ 经 R₃、R₄ 分压接同相端。本例自动匹配两侧电阻。',steps:['令 R₃ = R₁、R₄ = Rƒ，则两侧电阻比匹配，k = Rƒ/R₁。','同相端电压为 u₂R₄/(R₃ + R₄)，由虚短得到反相端电压。','对反相节点列 KCL，化简得 uₒ = k(u₂ − u₁)。'],focus:'将 u₂ 改成“同频交流”，令两路幅度、偏置相同且相位差为 0°，观察共模输入相消。',warning:'k(u₂ − u₁) 需要电阻比匹配。真实电阻误差和运放共模抑制比会使共模输出不为零。',q:['两侧电阻比匹配、k = 2，且 u₁ = u₂ = 1 V。理想输出是多少？',['2 V','4 V','0 V'],2,'两路输入相等，差模输入为零，理想输出为 0 V。']},
+ {id:'int',name:'积分器',title:'反相积分器：从理想到实用',en:'INTEGRATOR',intro:'输入使用电阻，反馈使用电容；可并联 Rƒ，提供直流反馈通路。',steps:['未饱和时，输入电流 u₁/Rᵢ 流向反馈电容与并联反馈电阻。','理想模式：duₒ/dt = −u₁/(RᵢC)，并由初始输出决定积分常数。','加入 Rƒ 后：duₒ/dt = −u₁/(RᵢC) − uₒ/(RƒC)，直流增益有限。'],focus:'使用方波输入观察斜坡。关闭 Rƒ 并加入输入直流偏置，观察积分输出随时间漂移。',warning:'每次调节均从 uₒ(0) = 0 重新计算，显示 3 个输入周期的起始响应。实用型在 f 远高于 1/(2πRƒC) 时近似积分。',q:['理想积分器输入恒定正电压，输出未饱和时如何变化？',['向正方向线性增加','向负方向线性变化','始终为零'],1,'duₒ/dt = −u₁/(RᵢC)，正输入使输出沿负方向形成斜坡。']},
+ {id:'der',name:'微分器',title:'实用反相微分器',en:'DIFFERENTIATOR',intro:'输入电容串联 Rᵢ，反馈使用 Rƒ。Rᵢ 限制高频增益，避免理想微分的无限高频放大。',steps:['输入支路阻抗为 Rᵢ + 1/(sC)，反馈阻抗为 Rƒ。','反相结构给出 H(s) = −RƒCs/(1 + RᵢCs)。','f 远低于 1/(2πRᵢC) 时，uₒ ≈ −RƒC·du₁/dt；高频增益趋近 −Rƒ/Rᵢ。'],focus:'选方波，看边沿附近的正负脉冲；改变 RᵢC，观察脉冲宽度与拐点频率变化。',warning:'本例是带输入串联电阻的实用模型。方波边沿产生有限脉冲，不能把其幅度当成理想冲激的幅度。',q:['反相微分器的输入出现上升沿，首先出现哪种极性的输出脉冲？',['负脉冲','正脉冲','没有响应'],0,'上升沿对应正的变化率，反相微分关系带负号，因此首先出现负脉冲。']},
+ {id:'cmp',name:'电压比较',title:'同相输入的单限电压比较器',en:'COMPARATOR',intro:'输入信号接同相端，参考电压接反相端，没有从输出返回输入的负反馈。',steps:['判断差分输入 u₊ − u₋ = u₁ − Uref 的正负。','u₁ > Uref 时输出高电平 +Ulim；u₁ < Uref 时输出低电平 −Ulim。','改变参考电压可移动翻转阈值；正弦输入可转换为矩形波。'],focus:'从 Uref = 0 开始，再把阈值向上调；观察高电平持续时间如何变化。',warning:'比较器工作在非线性区，不能使用“虚短”。恰好等于阈值时，本模型保持上一状态，初始状态设为低电平。',q:['比较器没有负反馈，能否直接令 u₊ = u₋？',['可以，任何运放都满足虚短','不可以，虚短有适用条件','只要输入是正弦波就可以'],1,'虚短是线性负反馈条件下的近似。开环比较器不能套用该近似。']}
+];
+const defaults={wave:'sine',amp:1,dc:0,freq:500,ri:10,rf:20,r2:10,cap:100,limit:10,amp2:1,dc2:0.7,phase:0,second:'dc',ref:0,leak:true};
+const saved=Object.fromEntries(circuits.map(c=>[c.id,{...defaults,...(c.id==='int'?{wave:'square',rf:100}:{}),...(c.id==='der'?{ri:1,rf:10,cap:10}:{}),...(c.id==='cmp'?{amp:2}: {})}]));
+let active='inv',state=saved[active],samples=[],chartBounds=null;
+const fmt=(v,d=2)=>Math.abs(v)<1e-10?'0':Number(v.toFixed(d)).toString();
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const clamp=(v,l)=>Math.max(-l,Math.min(l,v));
+function signal(wave,angle){if(wave==='square')return Math.sin(angle)>=-1e-12?1:-1;if(wave==='triangle')return 2/Math.PI*Math.asin(Math.sin(angle));return Math.sin(angle)}
+function model(s,id){
+ const period=1/s.freq,total=3*period,N=2400,dt=total/N,ri=s.ri*1000,rf=s.rf*1000,C=s.cap*1e-9;
+ let out=0,low=0,lastComparator=-s.limit,clipped=0;const data=[];
+ // Algebraic circuits are instantaneous. Dynamic circuits start with zero capacitor voltage.
+ for(let i=0;i<=N;i++){
+  const t=i*dt,angle=2*Math.PI*s.freq*t,u=s.dc+s.amp*signal(s.wave,angle),v=s.second==='dc'?s.dc2:s.dc2+s.amp2*signal(s.wave,angle+s.phase*Math.PI/180);
+  let target=0;
+  if(id==='inv')target=-rf/ri*u;
+  else if(id==='non')target=(1+rf/ri)*u;
+  else if(id==='buffer')target=u;
+  else if(id==='sum')target=-rf*(u/ri+v/(s.r2*1000));
+  else if(id==='diff')target=rf/ri*(v-u);
+  else if(id==='cmp'){if(u>s.ref+1e-12)lastComparator=s.limit;else if(u<s.ref-1e-12)lastComparator=-s.limit;target=lastComparator;}
+  else if(id==='int'){
+   if(i===0)target=0;else{
+    const midU=s.dc+s.amp*signal(s.wave,2*Math.PI*s.freq*(t-dt/2));
+    if(s.leak){const a=Math.exp(-dt/(rf*C));target=out*a-rf/ri*midU*(1-a)}
+    else target=out-dt*midU/(ri*C);
+   }
+  }else if(id==='der'){
+   // Exact sinusoidal response or exact interval update for square/triangle input.
+   // This avoids derivative cancellation errors when the RC time constant is shorter than dt.
+   const tau=ri*C,a=2*Math.PI*s.freq*tau;
+   if(s.wave==='sine')low=s.dc+s.amp/(1+a*a)*(Math.sin(angle)-a*Math.cos(angle))+(-s.dc+s.amp*a/(1+a*a))*Math.exp(-t/tau);
+   else if(i>0){const decay=Math.exp(-dt/tau);if(s.wave==='square'){const midU=s.dc+s.amp*signal(s.wave,2*Math.PI*s.freq*(t-dt/2));low=midU+(low-midU)*decay;}else{const prevU=s.dc+s.amp*signal(s.wave,2*Math.PI*s.freq*(t-dt)),slope=(u-prevU)/dt;low=u-slope*tau+(low-prevU+slope*tau)*decay;}}
+   target=-rf/ri*(u-low);
+  }
+  out=clamp(target,s.limit);if(id!=='cmp'&&Math.abs(target)>s.limit+1e-8)clipped++;
+  data.push({t,u,v,o:out});
+ }
+ return {data,clipped,dt,total};
+}
+// Expose the pure numerical model for reproducible teaching checks.
+window.OpAmpLab={model,defaults,circuits:circuits.map(c=>c.id)};
+function range(key,label,min,max,step,unit){return `<div class="control"><label for="${key}"><span>${label}</span><output id="${key}Val" class="value">${fmt(state[key])} ${unit}</output></label><input id="${key}" data-unit="${unit}" type="range" min="${min}" max="${max}" step="${step}" value="${state[key]}"></div>`}
+function select(key,label,options){return `<div class="control"><label for="${key}">${label}</label><select id="${key}">${options.map(([v,l])=>`<option value="${v}"${state[key]===v?' selected':''}>${l}</option>`).join('')}</select></div>`}
+function renderControls(){let html=select('wave','输入 u₁ 波形',[['sine','正弦波'],['square','方波'],['triangle','三角波']]);html+=`<div class="two">${range('amp','输入峰值 A₁',0,6,0.1,'V')}${range('dc','输入直流偏置',-3,3,0.1,'V')}</div>`;html+=range('freq','输入频率 f',50,2000,10,'Hz');
+ if(['sum','diff'].includes(active)){html+=select('second','第二路输入 u₂',[['dc','直流信号'],['ac','同频交流 + 直流偏置']]);html+=range('dc2','u₂ 直流电压 / 偏置',-3,3,0.1,'V');if(state.second==='ac')html+=`<div class="two">${range('amp2','u₂ 交流峰值',0,6,0.1,'V')}${range('phase','u₂ 相对相位',-180,180,5,'°')}</div>`;}
+ if(!['buffer','cmp'].includes(active)){const ilabel=active==='non'?'接地电阻 Rg':(['sum','diff'].includes(active)?'输入电阻 R₁':'输入电阻 Rᵢ');html+=`<div class="two">${range('ri',ilabel,1,100,1,'kΩ')}${range('rf','反馈电阻 Rƒ',1,200,1,'kΩ')}</div>`;}
+ if(active==='sum')html+=range('r2','第二路输入电阻 R₂',1,100,1,'kΩ');
+ if(active==='diff')html+='<p class="small">自动匹配：R₃ = R₁，R₄ = Rƒ，保证两侧电阻比相等。</p>';
+ if(['int','der'].includes(active))html+=range('cap','电容 C',10,1000,10,'nF');
+ if(active==='int')html+=`<label class="check"><input type="checkbox" id="leak"${state.leak?' checked':''}><span>并联反馈电阻 Rƒ（实用积分器）<br>关闭后为理想积分器，Rƒ 不再参与计算。</span></label>`;
+ if(active==='cmp')html+=range('ref','参考电压 Uref',-4,4,0.1,'V');
+ html+=range('limit','模型输出限幅 ±Ulim',1,15,0.5,'V');$('controls').innerHTML=html;
+ $('controls').querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>{state[el.id]=el.type==='checkbox'?el.checked:el.tagName==='SELECT'?el.value:Number(el.value);if(el.tagName==='SELECT'&&el.id==='second')renderControls();else if($(el.id+'Val'))$(el.id+'Val').textContent=fmt(state[el.id])+' '+el.dataset.unit;update();}));
+}
+function wire(d){return `<path class="wire" d="${d}"/>`}
+function dot(x,y){return `<circle class="node" cx="${x}" cy="${y}" r="3.3"/>`}
+function text(x,y,t,cls='svg-label',anchor='middle'){return `<text class="${cls}" x="${x}" y="${y}" text-anchor="${anchor}">${esc(t)}</text>`}
+function resistor(x1,x2,y,label,value){const m=(x1+x2)/2;return wire(`M${x1} ${y}H${m-26}M${m+26} ${y}H${x2}`)+`<rect class="component" x="${m-26}" y="${y-8}" width="52" height="16"/>`+text(m,y-17,label)+text(m,y+29,value,'svg-value')}
+function cap(x1,x2,y,label,value){const m=(x1+x2)/2;return wire(`M${x1} ${y}H${m-5}M${m+5} ${y}H${x2}M${m-5} ${y-15}V${y+15}M${m+5} ${y-15}V${y+15}`)+text(m,y-24,label)+text(m,y+33,value,'svg-value')}
+function ground(x,y){return wire(`M${x} ${y}v10m-12 0h24m-19 6h14m-10 6h6`)}
+function vres(x,y1,y2,label,value){const m=(y1+y2)/2;return wire(`M${x} ${y1}V${m-18}M${x} ${m+18}V${y2}`)+`<rect class="component" x="${x-8}" y="${m-18}" width="16" height="36"/>`+text(x+18,m-4,label,'svg-label','start')+text(x+18,m+16,value,'svg-value','start')}
+function drawCircuit(){const s=state;let p=`<title>${esc(circuits.find(c=>c.id===active).title)}电路原理图</title><desc>反相端位于三角形左上方，同相端位于左下方，输出位于右侧。</desc><path class="op" d="M370 110L370 280L540 195Z"/>`+text(388,162,'−','symbol')+text(388,242,'+','symbol')+text(435,202,'运放','svg-label')+wire('M540 195H690')+dot(600,195)+text(700,200,'uₒ','svg-label','start');
+ const fb=()=>wire('M600 195V65H530M325 65H300V155H370')+dot(300,155);
+ const invGround=()=>wire('M370 235H345V300')+ground(345,300);
+ const input=(y,label)=>`<circle class="component" cx="65" cy="${y}" r="4"/>`+text(65,y-17,label)+wire(`M69 ${y}H100`);
+ if(active==='inv'||active==='sum'||active==='int'||active==='der'){
+  p+=invGround();
+  if(active==='sum'){p+=input(155,'u₁')+resistor(100,300,155,'R₁',fmt(s.ri)+' kΩ')+input(215,'u₂')+resistor(100,300,215,'R₂',fmt(s.r2)+' kΩ')+wire('M300 215V155H370');}
+  else if(active==='der'){p+=input(155,'u₁')+cap(100,200,155,'C',fmt(s.cap)+' nF')+resistor(200,300,155,'Rᵢ',fmt(s.ri)+' kΩ')+wire('M300 155H370');}
+  else p+=input(155,'u₁')+resistor(100,300,155,'Rᵢ',fmt(s.ri)+' kΩ')+wire('M300 155H370');
+  if(active==='int'){
+   p+=wire('M600 195V65H530M325 65H300V155')+dot(300,155)+cap(325,530,65,'C',fmt(s.cap)+' nF');
+   if(s.leak)p+=wire('M300 65V-10H340M520 -10H600V65')+resistor(340,520,-10,'Rƒ',fmt(s.rf)+' kΩ');
+  }else p+=fb()+resistor(325,530,65,'Rƒ',fmt(s.rf)+' kΩ');
+ }else if(active==='non'){
+  p+=input(235,'u₁')+wire('M100 235H370')+fb()+resistor(325,530,65,'Rƒ',fmt(s.rf)+' kΩ')+resistor(100,300,155,'Rg',fmt(s.ri)+' kΩ')+wire('M100 155V180')+ground(100,180);
+ }else if(active==='buffer'){p+=input(235,'u₁')+wire('M100 235H370M600 195V65H300V155H370');}
+ else if(active==='diff'){
+  p+=input(155,'u₁')+resistor(100,300,155,'R₁',fmt(s.ri)+' kΩ')+wire('M300 155H370')+fb()+resistor(325,530,65,'Rƒ',fmt(s.rf)+' kΩ');
+  p+=input(235,'u₂')+resistor(100,300,235,'R₃',fmt(s.ri)+' kΩ')+wire('M300 235H370')+dot(300,235)+vres(300,235,310,'R₄',fmt(s.rf)+' kΩ')+ground(300,310);
+ }else{p+=input(235,'u₁')+wire('M100 235H370')+input(155,'Uref')+wire('M100 155H370')+text(190,140,fmt(s.ref)+' V','svg-value')+text(590,90,'无反馈支路','svg-sub');}
+ p+=text(650,304,'输出摆幅 ±'+fmt(s.limit)+' V','svg-sub');
+ // A taller upper margin keeps the parallel feedback resistor and its labels visible.
+ $('schematic').innerHTML=`<svg viewBox="0 -50 760 405" role="img" aria-label="${esc(circuits.find(c=>c.id===active).title)}原理图">${p}</svg>`;
+}
+function formula(){const s=state,k=s.rf/s.ri;let main='',sub='';
+ if(active==='inv'){main='uₒ = −(Rƒ/Rᵢ)u₁';sub='当前电压增益 Aᵥ = '+fmt(-k);}
+ if(active==='non'){main='uₒ = (1 + Rƒ/Rg)u₁';sub='当前电压增益 Aᵥ = '+fmt(1+k);}
+ if(active==='buffer'){main='uₒ = u₁';sub='目标电压增益 Aᵥ = 1';}
+ if(active==='sum'){main='uₒ = −Rƒ(u₁/R₁ + u₂/R₂)';sub='当前：uₒ = '+fmt(-k)+'u₁ '+(s.rf/s.r2>=0?'− ':'+ ')+fmt(s.rf/s.r2)+'u₂';}
+ if(active==='diff'){main='uₒ = (Rƒ/R₁)(u₂ − u₁)';sub='电阻比匹配，差模增益 k = '+fmt(k);}
+ if(active==='int'){main=s.leak?'duₒ/dt = −u₁/(RᵢC) − uₒ/(RƒC)':'uₒ(t) = −∫₀ᵗ u₁(τ)dτ/(RᵢC)';sub='uₒ(0) = 0 V；RᵢC = '+fmt(s.ri*s.cap/1000)+' ms'+(s.leak?'；泄放拐点 fL = '+fmt(1/(2*Math.PI*s.rf*1000*s.cap*1e-9),1)+' Hz':'；理想模式无直流泄放通路');}
+ if(active==='der'){main='H(s) = −RƒCs / (1 + RᵢCs)';sub='输入电容初始电压为 0 V；fH = '+fmt(1/(2*Math.PI*s.ri*1000*s.cap*1e-9),1)+' Hz；仅在 f ≪ fH 时近似微分';}
+ if(active==='cmp'){main='u₁ > Uref → +Ulim；u₁ < Uref → −Ulim';sub='当前 Uref = '+fmt(s.ref)+' V；无负反馈，不使用虚短';}
+ return main+'<small>'+sub+(active==='cmp'?'':'；以上线性关系需在输出未限幅时使用。')+'</small>';
+}
+function drawScope(result){const d=result.data,s=state,dual=['sum','diff'].includes(active),cmp=active==='cmp';const bound=Math.max(1,...d.map(p=>Math.max(Math.abs(p.u),Math.abs(p.o),dual?Math.abs(p.v):0)),cmp?Math.abs(s.ref):0)*1.18;
+ const W=Math.max(280,Math.round($('scope').getBoundingClientRect().width||760)),H=W<480?260:310,l=48,r=23,top=22,bottom=44,pw=W-l-r,ph=H-top-bottom;
+ $('scope').setAttribute('viewBox',`0 0 ${W} ${H}`);
+ const x=t=>l+t/result.total*pw,y=v=>top+ph/2-v/bound*ph/2;
+ let html='<title>当前电路的输入和输出波形</title><defs><clipPath id="plotclip"><rect x="'+l+'" y="'+top+'" width="'+pw+'" height="'+ph+'"/></clipPath></defs>';
+ for(let i=0;i<=6;i++){let xx=l+i*pw/6;html+=`<path class="chart-grid" d="M${xx} ${top}V${top+ph}"/>`+text(xx,H-20,fmt(result.total*1000*i/6,2),'chart-text');}
+ for(let i=-2;i<=2;i++){let v=bound*i/2,yy=y(v);html+=`<path class="${i===0?'chart-zero':'chart-grid'}" d="M${l} ${yy}H${W-r}"/>`+text(l-10,yy+4,fmt(v,1),'chart-text','end');}
+ const path=key=>d.map((p,i)=>(i?'L':'M')+x(p.t).toFixed(2)+' '+y(p[key]).toFixed(2)).join('');
+ html+='<g clip-path="url(#plotclip)">';
+ if(cmp)html+=`<path class="chart-second" d="M${l} ${y(s.ref)}H${W-r}"/>`;
+ if(dual)html+=`<path class="chart-second" d="${path('v')}"/>`;
+ html+=`<path class="chart-in" d="${path('u')}"/><path class="chart-out" d="${path('o')}"/></g><path id="cursor" d="" stroke="#74869a" stroke-dasharray="3 4"/><rect x="${l}" y="${top}" width="${pw}" height="${ph}" fill="transparent"/>`;
+ $('scope').innerHTML=html;$('scope').setAttribute('aria-label',`${circuits.find(c=>c.id===active).name}，显示${fmt(result.total*1000)}毫秒内的输入与输出电压，输出范围${fmt(Math.min(...d.map(p=>p.o)))}至${fmt(Math.max(...d.map(p=>p.o)))}伏。`);
+ chartBounds={l,pw,top,ph,total:result.total};$('legend2').classList.toggle('hidden',!dual&&!cmp);$('legend2text').textContent=cmp?'参考电压 Uref':'输入 u₂';
+ $('readout').textContent='在曲线上移动指针或轻点，读取同一时刻的输入与输出。';
+}
+function update(){drawCircuit();$('formula').innerHTML=formula();const result=model(state,active);samples=result.data;drawScope(result);const outs=samples.map(p=>p.o),min=Math.min(...outs),max=Math.max(...outs);let metric='';const m=(label,value)=>`<div><span>${label}</span><strong>${value}</strong></div>`;
+ metric+=m('输出最小 / 最大',fmt(min)+' / '+fmt(max)+' V');
+ if(active==='cmp'){const high=samples.slice(0,-1).filter(p=>p.o>0).length/(samples.length-1)*100;metric+=m('高电平占比',fmt(high,1)+' %');}
+ else if(['int','der'].includes(active))metric+=m('输入频率',fmt(state.freq,0)+' Hz');
+ else if(active==='sum')metric+=m('u₁ / u₂ 权重',fmt(-state.rf/state.ri)+' / '+fmt(-state.rf/state.r2));
+ else metric+=m(active==='diff'?'差模增益':'闭环电压增益',fmt(active==='non'?1+state.rf/state.ri:active==='buffer'?1:active==='inv'?-state.rf/state.ri:state.rf/state.ri));
+ metric+=m('显示时间窗',fmt(result.total*1000)+' ms');$('metrics').innerHTML=metric;
+ let status='';if(active==='cmp')status='比较器按阈值切换高低电平，属于正常非线性工作。';else if(result.clipped)status='输出已触及模型限幅，线性关系不再适用于限幅区；可减小输入、降低增益或调高 Ulim 对照观察。';else if(active==='int')status='从零初始输出开始计算，当前窗口未触及限幅；输入偏置会改变积分轨迹。';else if(active==='der')status='从输入电容零初始电压开始计算，含启动瞬态；首周期与后续周期可能不同。';else status='当前输出未触及模型限幅，可用线性关系解释输出。';
+ $('status').textContent=status;$('status').style.color=result.clipped?'#a3471e':'';
+ const rfEl=$('rf');if(rfEl){rfEl.disabled=active==='int'&&!state.leak;rfEl.closest('.control').style.opacity=rfEl.disabled?'.45':'1';}
+}
+function choose(id,focus=false){active=id;state=saved[id];const c=circuits.find(c=>c.id===id);$('tabs').querySelectorAll('button').forEach(b=>{b.setAttribute('aria-selected',b.dataset.id===id?'true':'false');b.tabIndex=b.dataset.id===id?0:-1;});$('workspace').setAttribute('aria-labelledby','tab-'+id);$('circuitTitle').textContent=c.title;$('circuitCaption').textContent=c.intro;$('modeLabel').textContent=id==='cmp'?'无负反馈 · 非线性应用':'负反馈 · 线性应用';$('modeLabel').classList.toggle('warn',id==='cmp');$('lessonIndex').textContent=String(circuits.indexOf(c)+1).padStart(2,'0')+' / 08';$('lesson').innerHTML='<ol class="steps">'+c.steps.map(s=>'<li>'+s+'</li>').join('')+'</ol><h3>动手观察</h3><p>'+c.focus+'</p><div class="callout">'+c.warning+'</div>';$('question').textContent=c.q[0];$('answers').innerHTML=c.q[1].map((a,i)=>`<button type="button" data-choice="${i}">${String.fromCharCode(65+i)}. ${esc(a)}</button>`).join('');$('feedback').textContent='';$('answers').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{const ok=Number(b.dataset.choice)===c.q[2];$('feedback').className='feedback '+(ok?'correct':'wrong');$('feedback').textContent=(ok?'回答正确。':'再想一想。')+c.q[3];}));renderControls();update();if(focus)$('tab-'+id).focus();}
+$('tabs').innerHTML=circuits.map(c=>`<button type="button" role="tab" aria-controls="workspace" id="tab-${c.id}" data-id="${c.id}" aria-selected="false"><span>${c.en}</span>${c.name}</button>`).join('');
+$('tabs').querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>choose(b.dataset.id)));
+$('tabs').addEventListener('keydown',e=>{if(!['ArrowLeft','ArrowRight','Home','End'].includes(e.key))return;e.preventDefault();let i=circuits.findIndex(c=>c.id===(e.target.dataset.id||active));i=e.key==='Home'?0:e.key==='End'?circuits.length-1:(i+(e.key==='ArrowRight'?1:-1)+circuits.length)%circuits.length;choose(circuits[i].id,true);});
+$('reset').addEventListener('click',()=>{saved[active]={...defaults,...(active==='int'?{wave:'square',rf:100}:{}),...(active==='der'?{ri:1,rf:10,cap:10}:{}),...(active==='cmp'?{amp:2}:{})};choose(active);});
+$('scope').addEventListener('pointermove',readPoint);$('scope').addEventListener('pointerdown',readPoint);
+function readPoint(e){if(!chartBounds)return;const svg=$('scope'),pt=svg.createSVGPoint();pt.x=e.clientX;pt.y=e.clientY;const local=pt.matrixTransform(svg.getScreenCTM().inverse()),b=chartBounds,k=Math.max(0,Math.min(samples.length-1,Math.round((local.x-b.l)/b.pw*(samples.length-1)))),p=samples[k],xx=b.l+p.t/b.total*b.pw;$('cursor').setAttribute('d',`M${xx} ${b.top}V${b.top+b.ph}`);$('readout').textContent=`t = ${fmt(p.t*1000,3)} ms　u₁ = ${fmt(p.u,3)} V　${['sum','diff'].includes(active)?'u₂ = '+fmt(p.v,3)+' V　':''}uₒ = ${fmt(p.o,3)} V`;}
+choose('inv');
+let resizeTimer;window.addEventListener('resize',()=>{clearTimeout(resizeTimer);resizeTimer=setTimeout(update,100);});
+</script>
+</body>
+</html>
